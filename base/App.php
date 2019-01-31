@@ -31,7 +31,6 @@ class App
   public function runController()
   {
     $controllerName = App::call()->request->getControllerName() ?: $this->config['defaultController'];
-    var_dump($controllerName);
     $actionName = App::call()->request->getActionName();
     $controllerClass = $this->config['controllerNamespace'] . ucfirst($controllerName) . "Controller";
     $defaultControllerClass = $this->config['controllerNamespace'] . ucfirst($this->config['defaultController']) . "Controller";
@@ -48,8 +47,6 @@ class App
   {
     if ($params = $this->config['components'][$name]) {
       $class = $params['class'];
-      var_dump($name);
-      var_dump($class);
       if (class_exists($class)) {
         unset($params['class']);
         $reflection = new \ReflectionClass($class);

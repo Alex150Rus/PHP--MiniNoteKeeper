@@ -9,7 +9,8 @@
 namespace app\models\repositories;
 
 
-class Note extends Repository
+
+class NoteRepository extends Repository
 {
   public function getTableName()
   {
@@ -17,6 +18,6 @@ class Note extends Repository
   }
   function getRecordClass()
   {
-    return Note::class;
+    return NoteRepository::class;
   }
 }

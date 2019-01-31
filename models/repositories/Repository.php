@@ -31,6 +31,13 @@ abstract class Repository
     return $this->db->queryObject($sql, $this->getRecordClass());
   }
 
+  public function getAllNotDistinct()
+  {
+    $tableName = $this->getTableName();
+    $sql = "SELECT id FROM {$tableName} GROUP BY title HAVING COUNT(*) > 1";
+    return $this->db->queryObject($sql, $this->getRecordClass());
+  }
+
   // Выводит список заметок конкретного пользователя
   public function getAllById($id)
   {
