@@ -61,12 +61,10 @@ class UserController extends Controller
     }
 
     $notDistinct = (new NoteRepository()) ->getAllNotDistinct();
-    var_dump($notDistinct);
+    $str = "id записей с повторяющимися заголовками:";
+    foreach ($notDistinct as $key => $value) {
+      $str.=  " {$notDistinct[$key]->id}, ";
+    }
+    echo $str;
   }
-
-  // решим дополнительную задачу посредством sql запросов
-  public function actionSql() {
-
-  }
-
 }

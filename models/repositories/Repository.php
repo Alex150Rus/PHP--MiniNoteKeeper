@@ -34,7 +34,7 @@ abstract class Repository
   public function getAllNotDistinct()
   {
     $tableName = $this->getTableName();
-    $sql = "SELECT id FROM {$tableName} GROUP BY title HAVING COUNT(*) > 1";
+    $sql = "SELECT title, id FROM {$tableName} WHERE title IN (SELECT title FROM {$tableName} GROUP BY title HAVING  COUNT(*)>1)";
     return $this->db->queryObject($sql, $this->getRecordClass());
   }
 
