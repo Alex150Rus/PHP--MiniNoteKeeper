@@ -85,7 +85,7 @@ abstract class Repository
     $sql = "UPDATE {$tableName} SET {$expression} WHERE id= :id";
     return $this->db->execute($sql, $params);
   }
-  public function delete(Record $record)
+  public function delete($record)
   {
     $tableName = $this->getTableName();
     $sql = "DELETE FROM {$tableName} WHERE id = :id";

@@ -2,7 +2,8 @@
 
 return [
   'rootDir' => $_SERVER['DOCUMENT_ROOT'] . "/../",
-  // 'templatesDir' => $_SERVER['DOCUMENT_ROOT'] . "/../view/"
+  'controllerNamespace' => 'app\\controllers\\',
+  'defaultController' => 'user',
 
   'components' => [
     'db' => [
@@ -16,7 +17,7 @@ return [
     ],
 
     'request' => [
-      'class' => \app\services\Db::class
+      'class' => \app\services\Request::class
     ],
   ]
 ];
