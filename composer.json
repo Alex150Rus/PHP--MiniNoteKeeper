@@ -1,0 +1,15 @@
+{
+  "name": "alex1/php--mini-note-keeper",
+  "authors": [
+    {
+      "name": "Alexander",
+      "email": "43272321+Alex150Rus@users.noreply.github.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "app\\": "./"
+    }
+  }
+}
