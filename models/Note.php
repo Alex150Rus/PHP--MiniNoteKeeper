@@ -11,5 +11,16 @@ namespace app\models;
 
 class Note
 {
+  public $id;
+  public $title;
+  public $content;
+  public $date_create;
 
+  public function __construct($id, $title, $content, $date_create)
+  {
+    $this->id = $id;
+    $this->title = $title;
+    $this->content = $content;
+    $this->date_create = $date_create;
+  }
 }
