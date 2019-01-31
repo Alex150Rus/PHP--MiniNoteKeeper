@@ -38,32 +38,38 @@ class UserController extends Controller
     echo "user_id={$user_id['id']},
      title={$_POST['title']},
       content = {$_POST['content']} ,
-       date_create = {$_POST['date_create']}";
+       date_create = {$_POST['date_create']}<br>";
 
     (new NoteRepository)->save(
       new Note(null, $_POST['title'], $_POST['content'], $_POST['date_create'], $user_id['id'])
     );
 
     // выведу список заметок от пользователя
-
-    var_dump((new NoteRepository())->getAllById($user_id['id']));;
+    $notesObjects = (new NoteRepository())->getAllById($user_id['id']);
+   $str = "записи пользователья с id: {$user_id['id']}<br>";
+    foreach ($notesObjects as $key => $value) {
+      $str .= " Название: {$notesObjects[$key]->title}, 
+      текст: {$notesObjects[$key]->content},
+       дата создания: {$notesObjects[$key]->date_create}<br>";
+    }
+    echo $str;
   }
 
   public function actionAdditional()
   {
     // Можно чисто SQLом SELECT COUNT id from users. потом в цикле SELECT COUNT id FROM notes WHERE user_id = $id из цикла
 
-    $userQuantity =count((new UserRepository())->getAll());
+    $userQuantity = count((new UserRepository())->getAll());
     echo "В системе зарегистрированно - $userQuantity пользователей<br><hr>";
-    for ($id=1; $id<=$userQuantity; $id++) {
-      $notesQuantity =count((new NoteRepository())->getAllById($id));
+    for ($id = 1; $id <= $userQuantity; $id++) {
+      $notesQuantity = count((new NoteRepository())->getAllById($id));
       echo "У пользователя c id = $id всего $notesQuantity заметок<br>";
     }
 
-    $notDistinct = (new NoteRepository()) ->getAllNotDistinct();
+    $notDistinct = (new NoteRepository())->getAllNotDistinct();
     $str = "id записей с повторяющимися заголовками:";
     foreach ($notDistinct as $key => $value) {
-      $str.=  " {$notDistinct[$key]->id}, ";
+      $str .= " {$notDistinct[$key]->id}, ";
     }
     echo $str;
   }
