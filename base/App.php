@@ -36,10 +36,10 @@ class App
     $controllerClass = $this->config['controllerNamespace'] . ucfirst($controllerName) . "Controller";
     $defaultControllerClass = $this->config['controllerNamespace'] . ucfirst($this->config['defaultController']) . "Controller";
     if (class_exists($controllerClass)) {
-      $controller = new $controllerClass(new TemplateRenderer());
+      $controller = new $controllerClass();
       $controller->runAction($actionName);
     } else {
-      $controller = new $defaultControllerClass(new TemplateRenderer());
+      $controller = new $defaultControllerClass();
       $controller->runAction($actionName);
     }
   }

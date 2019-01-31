@@ -18,10 +18,6 @@ return [
     'request' => [
       'class' => \app\services\Db::class
     ],
-
-    'renderer' => [
-      'class' => \app\services\renderers\TemplateRenderer::class
-    ]
   ]
 ];
 
