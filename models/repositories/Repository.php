@@ -34,7 +34,8 @@ abstract class Repository
   public function getAllNotDistinct()
   {
     $tableName = $this->getTableName();
-    $sql = "SELECT title, id FROM {$tableName} WHERE title IN (SELECT title FROM {$tableName} GROUP BY title HAVING  COUNT(*)>1)";
+    $sql = "SELECT title, id FROM {$tableName} WHERE title 
+            IN (SELECT title FROM {$tableName} GROUP BY title HAVING  COUNT(*)>1)";
     return $this->db->queryObject($sql, $this->getRecordClass());
   }
 
@@ -44,6 +45,18 @@ abstract class Repository
     $tableName = $this->getTableName();
     $sql = "SELECT * FROM {$tableName} WHERE user_id = :id";
     return $this->db->queryObject($sql, $this->getRecordClass(), [":id" => $id]);
+  }
+
+  public function Count() {
+    $tableName = $this->getTableName();
+    $sql = "SELECT COUNT(*) FROM {$tableName}";
+    return $this->db->queryCount($sql);
+  }
+
+  public function CountWhere($id) {
+    $tableName = $this->getTableName();
+    $sql = "SELECT COUNT(*) FROM {$tableName} WHERE user_id = :id";
+    return $this->db->queryCountWhere($sql, [":id" => $id]);
   }
 
   // Создаёт или обновляет заметку от имени пользователя; создаёт нового пользователя, если id пустая

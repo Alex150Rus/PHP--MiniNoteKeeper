@@ -47,6 +47,17 @@ class Db
     $pdoStatement->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, $className);
     return $pdoStatement->fetchAll();
   }
+
+  public function queryCount($sql) {
+  $pdoStatement = $this->query($sql);
+  return $pdoStatement->fetchColumn();
+}
+
+  public function queryCountWhere($sql, $params = []) {
+    $pdoStatement = $this->query($sql, $params);
+    return $pdoStatement->fetchColumn();
+  }
+
   public function getLastInsertId() {
     return $this->getConnection()->lastInsertId();
   }
